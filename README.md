@@ -8,3 +8,6 @@ https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/proj2/cs194-26-abw/
 
 Project 3: Face Morphing and Modelling a Photo Collection
 https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/proj3/cs194-26-abw/
+
+Project 4: Autostitching and Photo Mosaics
+https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/proj4A/cs194-26-abw/
