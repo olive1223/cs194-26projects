@@ -14,3 +14,6 @@ Project 4: Autostitching and Photo Mosaics
 Part A: https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/proj4A/cs194-26-abw/
 
 Part B: https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/proj4B/cs194-26-abw/
+
+Project 5: Facial Keypoint detection with Neural Networks
+https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/proj5/cs194-26-abw/
