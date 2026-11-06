@@ -1,0 +1,16 @@
+.column{
+    float:left;
+    width:33.33%;
+    padding:2px;
+}
+
+.row::after{
+    content:"";
+    clear:both;
+    display:table;
+}
+
+body {
+    margin:30px;
+    font-family:'Arial';
+}

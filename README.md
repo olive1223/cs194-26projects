@@ -1,22 +1,24 @@
 # cs194-26projects
 
+Project writeups for CS 194-26 (Fall 2022), hosted on GitHub Pages.
+
 Project 1: Colorizing the Produkin-Gorskii Photo Collection
-https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/proj1/cs194-26-abw/
+https://olive1223.github.io/cs194-26projects/proj1/
 
 Project 2: Fun with Filters and Frequencies
-https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/proj2/cs194-26-abw/
+https://olive1223.github.io/cs194-26projects/proj2/
 
 Project 3: Face Morphing and Modelling a Photo Collection
-https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/proj3/cs194-26-abw/
+https://olive1223.github.io/cs194-26projects/proj3/
 
 Project 4: Autostitching and Photo Mosaics
 
-Part A: https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/proj4A/cs194-26-abw/
+Part A: https://olive1223.github.io/cs194-26projects/proj4a/
 
-Part B: https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/proj4B/cs194-26-abw/
+Part B: https://olive1223.github.io/cs194-26projects/proj4b/
 
 Project 5: Facial Keypoint detection with Neural Networks
-https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/proj5/cs194-26-abw/
+https://olive1223.github.io/cs194-26projects/proj5/
 
 Final Project: Augmented Reality and Lightfield Cameras
-https://inst.eecs.berkeley.edu/~cs194-26/fa22/upload/files/projFinalAssigned/cs194-26-abw/
+https://olive1223.github.io/cs194-26projects/final/

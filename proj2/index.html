@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <h1 style = text-align:center>Project 2- Olivia Huang</h1>
+        </br>
+        <h2>Part 1</h2>
+        <p>Gradient magnitudes are computed by convolving the image with a derivative filter- first with a finite difference operator, and then a Derivative of Gaussian filter. The finite difference operators D_x and D_y are given as [1, -1] and [1, -1]^T, respectively. The Derivative of Gaussian filter is created by convolving the finite difference operator with a Gaussian filter. In both, the edges in the y and x direction were found by convolving the image with either filter, and the magnitude was taken of both to combine the images. The results were then binarized to be either greater than or less than a threshold.</p>
+        <p>After convolving with just D_x and D_y, we get an image showing the magnitude in changes in either the x or y (vertical vs horizontal) direction.</p>
+        <div class="row">
+            <div class="column">
+                <img src="xcameraman.png" width="200">
+            </div>
+            <div class="column">
+                <img src="ycameraman.png" width="200">
+            </div>
+        </div>
+        <p>With just the difference operator, the edges are thinner, but more noisy. So, we apply a Gaussian filter before applying the operator in order to reduce the noise.</p>
+        <img src="binarized.png" width = 200>
+        <p>After pre-applying the Gaussian Filter, there is noticeably less noise, even if the edges are thicker.</p>
+        <img src="newbinarized.png" width = 200>
+        <p>After applying the Derivative of Gaussian operator, which combines the convolution of the Gaussian and derivative into one operation filter, we see similar results as applying the convolutions separately.</p>
+        <div class="row">
+            <div class="column">
+                <img src="xDoG.png" width="200">
+            </div>
+            <div class="column">
+                <img src="yDoG.png" width="200">
+            </div>
+        </div>
+        </br>
+        <img src="newb.png" width = 200>
+        <h2>Part 2.1</h2>
+        <p>We sharpened images by adding additional details to the photo. In order to do this, a Gaussian blurred version of the image was subtracted from the original image, leaving only the high-frequency portions.</p>
+        <div class="row">
+            <div class="column">
+                <img src="taj.jpeg" width="200">
+            </div>
+            <div class="column">
+                <img src="tajsharp.jpeg" width="200">
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <img src="cat.jpeg" width="200">
+            </div>
+            <div class = "column">
+                <img src="catsharp.jpeg" width = 200>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <img src="blanky.jpeg" width="200">
+            </div>
+            <div class = "column">
+                <img src="blankysharp.jpeg" width = 200>
+            </div>
+        </div>
+        <p>After applying a Gaussian filter to blur an image, we applied the unmask sharpening filter back to compare it to the original. The original image was not recovered, but the result is in between the blurred and original.</p>
+        <div class="row">
+            <div class="column">
+                <img src="shrek.jpeg" width="200">
+            </div>
+            <div class="column">
+                <img src="blurryshrek.jpeg" width="200">
+                <figcaption>After applying a Gaussian filter</figcaption>
+            </div>
+            <div class="column">
+                <img src="shreksharp.jpeg" width="200">
+                <figcaption>After applying the filter twice to sharpen the blurred image</figcaption>
+            </div>
+        </div>
+    </br>
+    <h2>Part 2.2</h2>
+    <p>We created hybrid images by combining the high frequency and low frequency portions for each and superimposing the images. The high frequency portions were the details used in the sharpening process, and the low frequency image was obtained with a gaussian filter.</p>
+    <div class="row">
+        <div class="column">
+            <img src="DerekPicture.jpg" width="200">
+        </div>
+        <div class="column">
+            <img src="nutmeg.jpg" width="200">
+        </div>
+        <div class="column">
+            <img src="hybrid.jpg" width="200">
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="column">
+            <img src="lucy.jpg" width="200">
+        </div>
+        <div class="column">
+            <img src="axolotl.jpg" width="200">
+        </div>
+        <div class="column">
+            <img src="2hybrid.jpg" width="200">
+            <figcaption>My friend's cat, Lucy, and an axolotl!</figcaption>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <img src="IMG_6549.jpeg" width="200">
+        </div>
+        <div class="column">
+            <img src="IMG_7704.jpeg" width="200">
+        </div>
+        <div class="column">
+            <img src="1hybrid.jpg" width="200">
+            <figcaption>10 year old me from the first time I visited Lombard Street, and me just after moving into college!</figcaption>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <img src="Fourier.jpg" width="200">
+            <figcaption>This is the fourier graph of the second hybrid image, corresponding to the amount of high and low frequencies in each direction.</figcaption>
+        </div>
+        <div class="column">
+            <img src="high_pass.jpeg" width="200">
+            <figcaption>High pass filtered image</figcaption>
+        </div>
+        <div class="column">
+            <img src="low_pass.jpeg" width="200">
+            <figcaption>Low pass filtered image, added to the high pass</figcaption>
+        </div>
+    </div>
+    <img src="hybrid2.jpg" width = 200>
+    <p>The alignment failed in the last image, resulting in an upside-down cat. In addition, the cutoff-frequency of the high pass filter was too high, resulting in only a faint cat outline. In order to capture more details, I had to lower this value.</p>
+     <h3>Bells and Whistles</h3>
+    <p>I implemented color by separating into color channels, aligning each using the same points, and creating a hybrid of each channel before restacking. Because the high pass filter only retains sharp edges, most of the color is lost, so color retains better on low frequency images.</p>
+    <div class="row">
+        <div class="column">
+            <img src="1hybridcolor.jpg" width="200">
+        </div>
+        <div class = "column">
+            <img src="hybridcolor2.jpg" width = 200>
+        </div>
+    </div>
+    <h2>Part 2.3</h2>
+    <p> We implemented a Gaussian and Laplacian levels at each stack to prepare to create a image mosaic- blending two images seamlessly. At each level corresponding to a new octave, different frequencies were retained, creating a band pass filter. To recover the original image, the levels were summed together.</p>
+    <div class="row">
+        <div class="column">
+            <img src="level0_apple.jpeg" width="200">
+            <figcaption>Level = 0</figcaption>
+
+        </div>
+        <div class="column">
+            <img src="level1apple.jpeg" width="200">
+            <figcaption>Level = 2</figcaption>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <img src="level2apple.jpeg" width="200">
+            <figcaption> Level = 4</figcaption>
+        </div>
+        <div class = "column">
+            <img src="blendedapple.jpeg" width = 200>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <img src="level0orange.jpeg" width="200">
+            <figcaption>Level = 0</figcaption>
+
+        </div>
+        <div class="column">
+            <img src="level2orange.jpeg" width="200">
+            <figcaption>Level = 2</figcaption>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <img src="level4orange.jpeg" width="200">
+            <figcaption> Level = 4</figcaption>
+        </div>
+        <div class = "column">
+            <img src="blended_orange.jpeg" width = 200>
+        </div>
+    </div>
+<h2>Part 2.4</h2>
+<p>After building the stacks, we had to create masks from Gaussian filters to blend the images without reshowing the seam. The final result was then created through a linear combination of the mask and the recovered images at each level of the stacks.</p>
+<div class="row">
+    <div class="column">
+        <img src="orange.jpeg" width="200">
+    </div>
+    <div class="column">
+        <img src="apple.jpeg" width="200">
+    </div>
+    <div class="column">
+        <img src="oraple.jpeg" width="200">
+    </div>
+</div>
+<div class="row">
+    <div class="column">
+        <img src="dexter.jpg" width="200">
+    </div>
+    <div class="column">
+        <img src="daffy.jpg" width="200">
+    </div>
+    <div class="column">
+        <img src="dafter.jpg" width="200">
+        <figcaption>My sisters' weighted Target dinos, Dexter and Daffy. The picture is large(4000x3000), so the seam is less smooth as the gaussian would have to be large.</figcaption>
+    </div>
+</div>
+<h4>Level 0 (high frequency)</h4>
+<div class="row">
+    <div class="column">
+        <img src="dexter0.jpg" width="200">
+    </div>
+    <div class="column">
+        <img src="daffy0.jpg" width="200">
+    </div>
+    <div class="column">
+        <img src="dafter0.jpg" width="200">
+    </div>
+</div>
+<h4>Level 4 (low frequency)</h4>
+<div class="row">
+    <div class="column">
+        <img src="dexter2.jpg" width="200">
+    </div>
+    <div class="column">
+        <img src="daffy2.jpg" width="200">
+    </div>
+    <div class="column">
+        <img src="dafter2.jpg" width="200">
+    </div>
+</div>
+<div class="row">
+    <div class="column">
+        <img src="IMG_0565.jpeg" width="200">
+    </div>
+    <div class="column">
+        <img src="daisy.jpeg" width="200">
+    </div>
+    <div class="column">
+        <img src="slugdaisy.jpg" width="200">
+    </div>
+</div>
+<h4>Level 0</h4>
+<div class="row">
+    <div class="column">
+        <img src="slug0.jpg" width="200">
+    </div>
+    <div class="column">
+        <img src="daisy0.jpg" width="200">
+    </div>
+    <div class="column">
+        <img src="slugdaisy0.jpg" width="200">
+    </div>
+</div>
+<h4>Level 4</h4>
+<div class="row">
+    <div class="column">
+        <img src="slug2.jpg" width="200">
+    </div>
+    <div class="column">
+        <img src="daisy2.jpg" width="200">
+    </div>
+    <div class="column">
+        <img src="slugdaisy2.jpg" width="200">
+    </div>
+</div>
+<h2>Conclusion</h2>
+<p>The coolest part of the project was implementing the hybrid images, and figuring out which image should go through the high pass or low pass filter, and exploring the results that came from doing that. I also enjoyed going through pinterest to find funny images to sharpen and make a mosaic of. I found it interesting that you can essentially detect edges using just two small vectors, rather than guessing where the objects were.</p>
+</body>
+</html>

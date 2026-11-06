@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+    <link type="stylesheet" href="index.css">
+</head>
+<body>
+    <h1 style="text-align: center;">Project 4a- Olivia Huang</h1>
+    </br>
+    <p>In order to combine multiple images into a "mosaic",  sometimes the camera angle will result in a different planar surface for the images. In order to flatten the images against the same plane, a projective transform was applied to one of the images.</p>
+    <div class="row">
+        <div class="column">
+            <img src="IMG_8249.jpeg" width="200">
+            <img src="IMG_8250.jpeg" width="200">
+        </div>
+    </div>
+    <p>The projective transform(Homography) matrix, H, is a 3x3 matrix. In order to recover each parameter of the matrix, 10 correspondance points were chosen between both images, which created an overdetermined system of linear equations. Least squares was then used to recover the transformation parameters, and the image was warped by applying this matrix.</p>
+    <div class="row">
+        <div class="column">
+            <img src="im1pts.jpeg" width="200">
+            <img src="im2pts.jpeg" width="200">
+        </div>
+    </div>
+    <p>I then used the same warp process as in project 3- first creating a mask of the new point locations and then interpolating the pixel values.</p>
+    <img src="w.jpeg" width="200">
+    <p>After warping the image, I used the Laplacian stack blending technique from project 2 to create a mosaic of the two images.</p>
+    <img src="mosaic.jpeg" width="600">
+    <p>Here are some more mosaics!</p>
+    <div class="row">
+        <div class="column">
+            <img src="IMG_6544_1_25.jpeg" width="200">
+            <img src="IMG_6545_25.jpeg" width="200">
+        </div>
+    </div>
+    <img src="m.jpeg" width="600">
+    <div class="row">
+        <div class="column">
+            <img src="IMG_6808_25.jpeg" width="200">
+            <img src="IMG_6809_25.jpeg" width="200">
+        </div>
+    </div>
+    <img src="m2.jpeg" width="600">
+</br>
+    <h2>Rectification</h2>
+    <p>Using the same homography warping technique, you can take a non-parallel surface on an image and turn it into a flat image. </p>
+    <div class="row">
+        <div class="column">
+            <img src="IMG_7180.jpeg" width="200">
+            <img src="rect1.jpeg" width="200">
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <img src="IMG_7969.jpeg" width="200">
+            <img src="rect2.jpeg" width="200">
+        </div>
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>Even with very narrow (nearly perpendicular) planes like the ones shown in lecture, you can still recover a homography and project it onto a new plane while preserving the old patterns. I thought that when you enlarged a thin image like that, most of the information would be lost, but through interpolation, you can recover nearly all of the missing information!</p>
+</body>
+</html>

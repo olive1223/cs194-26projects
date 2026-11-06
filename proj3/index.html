@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+    <link rel = "stylesheet" href="index.css">
+</head>
+<h1 style="text-align:center">Project 3- Olivia Huang</h1>
+<p>In order to morph to faces, two processes are required- warping an image's shape and then cross-dissolving the colors.</p>
+<p>I first selected correspondance points for each image, matching feature to feature. From there, I used a Delauney triangulation to create triangles inbetween each point to speed up computation of each new coordinate. With each triangle, I then warped the coordinates using an affine transformation to the new image and used interpolation to get the color values for the new image.</p>
+<p>To cross dissolve colors of the images, the following equation was used: image = (1-t)im1 + (t)im2, where t is a value from [0, 1] controlling how close the morphed image is to image 1 or 2.</p>
+<h2>Part 1</h2>
+<p>I first computed the "average" shape, or the correspondance points in between im1 and im2, and created an average image.</p>
+<div class = "row">
+    <div class = "column">
+        <img src="IMG_8235_50.jpeg" width="200">
+    </div>
+    <div class = "column">
+        <img src="IMG_6099_50.jpeg" width="200">
+    </div>
+</div>
+<div class = "row">
+    <div class = "column">
+        <img src="points1.jpeg" width="200">
+        <figcaption>I chose 50 correspondance points, with 46 corresponding to facial features.</figcaption>
+    </div>
+    <div class = "column">
+        <img src="points2.jpeg" width="200">
+    </div>
+</div>
+<div class="row">
+    <div class="column">
+        <img src="triangles1.jpeg" width="200">
+        <figcaption>The scipy Delauney class takes in the points from above and creates triangles- the same triangles were used for both images to retain the same warping shape.</figcaption>
+    </div>
+    <div class="column">
+        <img src="triangles2.jpeg" width="200">
+    </div>
+</div>
+<div class="row">
+    <div class = "column">
+        <img src="dissolve1.jpeg" width="200">
+        <figcaption>The additional black space is due to aligning the images to reduce ghosting.</figcaption>
+    </div>
+    
+</div>
+<h2>Part 2</h2>
+<p>After taking the halfway point, I compiled all the images from t = 0 to t = 1.</p>
+<img src="morph1.gif" width="200">
+<h2>Part 3</h2>
+<p>Using the Danes database of faces, I averaged 40 faces together to create an average population face. Because the images were not completely aligned, the edges appear blurry.</p>
+<img src="popaverage2.jpg" width="200">
+<p>I then morphed some of the faces in the dataset into the average face shape calculated earlier.</p>
+<div class = "row">
+    <div class = "column">
+        <img src="im10.jpg" width="200">
+    </div>
+    <div class = "column">
+        <img src="im20.jpg" width="200">
+    </div>
+</div>
+<div class = "row">
+    <div class = "column">
+        <img src="im30.jpg" width="200">
+    </div>
+    <div class = "column">
+        <img src="im40.jpg" width="200">
+    </div>
+</div>
+<p>I also morphed my face onto this average shape. My image was not aligned with the other faces, resulting in the background noise.</p>
+<img src="im01.jpg" width="200">
+<h2>Part 5</h2>
+<p>Caricatures are exaggerated features on an individual. To find what parts of my face were exaggerated, I subtracted my face shape from the average, and added it back to create a caricature.</p>
+<img src="caricature1.jpg" width="200">
+<h2>Bells and Whistles</h2>
+<p>Using the average face of the kpop boy group Seventeen from the internet, I morphed my face onto it, with just the color, just the shape, and both.</p>
+<div class = "row">
+    <div class = "column">
+        <img src="boygroup.jpeg" width="200">
+    </div>
+    <div class = "column">
+        <img src="shape.jpeg" width="200">
+    </div>
+</div>
+<div class = "row">
+    <div class = "column">
+        <img src="owarped.jpeg" width="200">
+    </div>
+    <div class = "column">
+        <img src="bwwarped.jpeg" width="200">
+    </div>
+</div>
+</html>

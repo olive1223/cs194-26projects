@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+    <link type="stylesheet" href="index.css"> 
+</head>
+<body>
+<h1 style="text-align:center"> Project 5- Olivia Huang</h1>
+</br>
+<p>Using a convolutional neural network, we were able to estimate facial keypoints on a dataset of faces.</p>
+<p>We trained on a set of 192 faces and preselected keypoints.</p>
+<h2>Part 1</h2>
+<p>We first trained the network to predict only nosetip keypoints. A dataloader was created to load all the images and points from a folder.</p>
+<img src="dataloaded.jpg" width="200">
+<p> I created a network with 3 convolutional layers, each followed by a relu and maxpool layer, and then 3 fully connected layers. The convolutional layers had a filter of 5x5 and a stride of 1, and the pool layers had a stride of 2. After the convolutional layers, I ended up with 64 channels. The network was trained for 10 epochs- we ran the network 10 times against all the training images, and allowed back propagation to fine tune the weights. With a learning rate of 1e-3, we were able to reduce the MSE loss in an asymptotic manner. I trained the network for 10 epochs- cycling through all the training data 10 times to fine tune the weights.</p>
+<img src="mseloss.jpg" width="200">
+<p>In these two pictures, the nosetip was correctly detected when comparing to the original keypoints.</p>
+<div class="row">
+    <div class="column">
+        <img src="10epochs85.jpg" width="200">
+        <img src="10epochs181.jpg" width="200">
+    </div>
+</div>
+<p> Here, the predicted point was farther off. This could be due to different nose shapes affecting the brightness value at a specific spot, or the face being in a completely different location than the rest of the dataset.</p>
+<div class="row">
+    <div class="column">
+        <img src="10epochs105.jpg" width="200">
+        <img src="10epochs128.jpg" width="200">
+    </div>
+</div>
+<p> I decreased the learning rate to 1e-4, and noticed that the error converged in about 2 epochs to the minimum, whereas before it converged after 1.</p>
+<img src="mseloss1e-4.jpg">
+<p> I also played with the network parameters- by decreasing the filter size from 5x5 to 3x3, I noticed that the error rate was a bit higher, and was more on par with the validation error rate..</p>
+<img src="filter3.jpg" width="200">
+</br>
+<h2>Part 2</h2>
+<p>After predicting one datapoint, we moved on to predicting all 58 facial keypoints. I used a network of 5 convolutional layers with a kernel size of 3 that output 120 channels. All were followed by a relu and maxpool layer of stride 2, and then 3 fully connected layers that reduced the input to the x and y coordinates. To increase the number of unique images in the dataset, I applied data augmentation. I randomly chose whether an image would be shifted by 10 pixels or have its color values change, and adjusted the training keypoints accordingly.</p>
+<img src="allptsdataloaded.jpg" width="200">
+<img src="allloss.jpg" width="200">
+<p>As with in part 1, The network performed better on images where the face was forward and centered in the average location.</p> 
+<div class="row">
+    <div class="column">
+        <img src="allepochs221.jpg" width="200">
+        <img src="allepochs226.jpg" width="200">
+    </div>
+</div>
+<p>Where the face was off to the side and partially obstructed, the network continued to predict the average keypoint location.</p>
+<div class="row">
+    <div class="column">
+        <img src="allepochs194.jpg" width="200">
+        <img src="allepochs218.jpg" width="200">
+    </div>
+</div>
+<p>The learned filters on the first layer looked like this:</p>
+<img src="layer1.jpg" width="200">
+</br>
+<h2>Part 3</h2>
+<p>Using the pretrained model ResNet18, I then trained the network on 6666 images with faces at different sizes and angles. Each image had 68 facial points, and the image needed to be cropped to an equal size.</p>
+<img src="dataset.jpg" width="200">
+<p>The ResNet18 model had 4 layers, each following the sequence convolve->batch norm->ReLU->convolve->batch norm, then a downsampling sequence convolve->batch norm. A 3x3 kernel was used for all convolutions, and a stride of 2 was used for the first convolution and downsampling convolution. The network took in 1 channel and output 136 channels for each x and y coordinate for the 68 points.</p>
+<img src="trainingloss.jpg" width="200">
+<img src="largedata251.jpg" width="200">
+<p>I then tested the network on some of my own images, which had no training points.</p>
+<img src="ownimages.jpg" width="200">
+</br>
+<h2>Part 4</h2>
+<p>After predicting the test data with the ResNet model, I then predicted the points using a fully convolutional network. A heatmap of pixelwise predictions are made for each keypoint, and the weighted average is taken to get these keypoints. I used a UNet model to train the data and run the same test set, but created heatmaps for each landmark as the training points. The gaussian used had a sigma of 2 and was size 10.</p>
+<div class="row">
+    <div class="column">
+        <img src="map1.jpg" width="200">
+        <img src="map2.jpg" width="200">
+    </div>
+</div>
+<p>The model contains 4 encoder layers, a bottleneck layer, and 4 decoder layers. Each layer has the following sequence: convolve->batch norm->ReLU->convolve->batch norm->ReLU, with a kernel of size 3x3 and a stride of 1.</p>
+<img src="allloss (1).jpg" width="200">
+</body>
+</html>

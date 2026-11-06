@@ -1,0 +1,39 @@
+<!Doctype HTML>
+<h1 style="text-align:center">Final Project- Olivia Huang</h1>
+</br>
+<h2>Augmented Reality</h2>
+</br>
+<p>I inserted a synthetic cube onto an existing video with a predifined coordinate system.</p>
+<video width="200" height="400" controls>
+    <source src="IMG_8588.mp4" type="video/mp4">
+</video>
+<p>I first selected correspondance points at the corners of the grid I drew on the box. Then, I used a CSRT tracker from the cv module to track these points across each frame.</p>
+<video width="200" height="400" controls>
+    <source src="tracked.mp4" type="video/mp4">
+</video>
+<p>After getting these 2d points and the known 3d coordinates, I was able to find the camera projection matrix for each frame. With the corners of the cube I desired, I then turned these 3d points into the image coordinates and drew the cube in each frame.</p>
+<video width="200" height="400" controls>
+    <source src="cubevid.mp4" type="video/mp4">
+</video>
+<h3>Bells and Whistles</h3>
+<p>I inserted my own mesh into the video using Pyrender. I first broked the projection matrix into the intrinsic and extrinsic matrices, then rendered a triangular mesh found online. To add this back into our video, I added the rendered image into each frame.</p>
+<video width="200" height="400" controls>
+    <source src="meshvid.mp4" type="video/mp4">
+</video>
+<h2>Lightfield Camera</h2>
+<h3>Part 1</h3>
+<p>Conventional cameras have the one downside of not being focused in all areas. Objects not in the depth of focus at the lens are unfocused, resulting in images similar to the iPhone's Portrait mode. Using the Stanford Lightfield Archive, I took images taken over a 17x17 grid to change the focus value at different depths.</p>
+<img src="defaultavg.jpeg" width="200">
+<figcaption>This is the result of all the images averaged together. Only the leaves in top, which are farthest from the lens, are in focus.</figcaption>
+<p>In order to focus the image at different locations, I had to shift the images to the correct location and then averaged them.</p>
+<img src="pt1.gif", width="200">
+<figcaption>The progression of each depth on the x axis, starting from 0, 0</figcaption>
+<img src="pt2.gif", width="200">
+<figcaption>The progression of each depth on the y axis, starting from 0, 0</figcaption>
+<h3>Part 2</h3>
+<p>To mimic a lens with a smaller aperture, I used the same approach of averaging images as in part 1, but used fewer images. Here, I used 1/4th of the images, skipping over every other grid coordinage.</p>
+<img src="1aperture.gif" width="200">
+<figcaption>Averaged at 0, 0, shrinking the sample size in each frame</figcaption>
+<h3>Summary</h3>
+<p>I thought it was interesting how each level of "closeness" you got to the image was a different focus- it shows how cameras take in light, and similarly, how our eyes. I think it would be interesting to explore how we change focus without moving, and how we could combine those images!</p>
+</html>
